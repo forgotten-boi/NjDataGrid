@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NjGrid.DataAccess\NjGrid.DataAccess.csproj" />
+    <ProjectReference Include="..\NjGrid.Services\NjGrid.Services.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

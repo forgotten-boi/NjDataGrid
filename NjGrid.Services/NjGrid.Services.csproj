@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NjGrid.DataAccess\NjGrid.DataAccess.csproj" />
+    <ProjectReference Include="..\NjGrid.Entity\NjGrid.Entity.csproj" />
+    <ProjectReference Include="..\NjGrid.Repository\NjGrid.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

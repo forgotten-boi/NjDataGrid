@@ -1,4 +1,6 @@
-﻿using Javra.Payroll.Entity.BaseEntity;
+﻿
+using NjGrid.Entity.BaseEntity;
+using NjGrid.Entity.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

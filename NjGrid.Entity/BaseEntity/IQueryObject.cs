@@ -1,9 +1,10 @@
-﻿using Javra.Payroll.Entity.Entities;
+﻿
+using NjGrid.Entity.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Javra.Payroll.Entity.BaseEntity
+namespace NjGrid.Entity.BaseEntity
 {
     public interface IQueryObject
     {

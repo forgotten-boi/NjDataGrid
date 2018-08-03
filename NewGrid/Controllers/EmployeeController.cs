@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NjGrid.Services.Interface;
+using Newtonsoft.Json;
+using NjGrid.Entity.DtoModel;
 
 namespace NjGrid.Controllers
 {
@@ -11,6 +15,12 @@ namespace NjGrid.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
+        public IEmployeeService _employeeService { get; set; }
+        protected EmployeeController(IEmployeeService employeeService)
+        {
+            this._employeeService = employeeService;
+        }
+
         // GET: api/Employee
         [HttpGet]
         public IEnumerable<string> Get()
@@ -27,7 +37,7 @@ namespace NjGrid.Controllers
 
         // POST: api/Employee
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] EmployeeDto model)
         {
             try
             {
@@ -38,9 +48,9 @@ namespace NjGrid.Controllers
                 var validationDto = await _employeeService.CreateUpdateEmployeeAsync(model);
                 if (validationDto.IsSucess)
                 {
-                    return Json(new { result = validationDto.IsSucess, message = validationDto.Message });
+                    return new JsonResult(new { result = validationDto.IsSucess, message = validationDto.Message });
                 }
-                return Json(new { result = validationDto.IsSucess, message = validationDto.Message });
+                return new JsonResult(new { result = validationDto.IsSucess, message = validationDto.Message });
 
             }
             catch (Exception ex)
