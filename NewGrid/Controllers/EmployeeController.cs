@@ -8,17 +8,23 @@ using Microsoft.AspNetCore.Mvc;
 using NjGrid.Services.Interface;
 using Newtonsoft.Json;
 using NjGrid.Entity.DtoModel;
+using NjGrid.Entity.Entities;
+using AutoMapper;
+using NjGrid.Repository.IRepositories;
 
 namespace NjGrid.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class EmployeeController : ControllerBase
+    //[ApiController]
+    public class EmployeeController : Controller //ControllerBase
     {
         public IEmployeeService _employeeService { get; set; }
-        protected EmployeeController(IEmployeeService employeeService)
+
+        private readonly IMapper _mapper;
+        public EmployeeController(IEmployeeService employeeService, IMapper mapper)
         {
             this._employeeService = employeeService;
+            _mapper = mapper;
         }
 
         // GET: api/Employee
@@ -36,34 +42,68 @@ namespace NjGrid.Controllers
         }
 
         // POST: api/Employee
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] EmployeeDto model)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-                var validationDto = await _employeeService.CreateUpdateEmployeeAsync(model);
-                if (validationDto.IsSucess)
-                {
-                    return new JsonResult(new { result = validationDto.IsSucess, message = validationDto.Message });
-                }
-                return new JsonResult(new { result = validationDto.IsSucess, message = validationDto.Message });
+        //[HttpPost]
+        //public async Task<IActionResult> Post([FromBody] EmployeeDto model)
+        //{
+        //    try
+        //    {
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(ModelState);
+        //        }
+        //        var employee = Mapper.Map<EmployeeDto, Employee>(model);
+        //        try
+        //        {
+        //            await _employeeService.AddAsync(employee);
+        //            return new JsonResult(new { result = "True", message = "Success"});
+        //        }
+        //        catch (Exception ex)
+        //        {
 
-            }
-            catch (Exception ex)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Error while creating employee");
-            }
-        }
+        //            return new JsonResult(new { result = "False", message = ex.Message});
+        //        }
+               
+        //        //if (validationDto.IsSucess)
+        //        //{
+        //        //    return new JsonResult(new { result = validationDto.IsSucess, message = validationDto.Message });
+        //        //}
+        //        //return new JsonResult(new { result = validationDto.IsSucess, message = validationDto.Message });
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode((int)HttpStatusCode.InternalServerError, "Error while creating employee");
+        //    }
+        //}
 
         // PUT: api/Employee/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
+
+        [HttpPost]
+        public async Task<IActionResult> GetPagedEmployee([FromBody]FilterResource filterResource)
+        {
+
+            try
+            {
+                //var filterResource = JsonConvert.DeserializeObject<FilterResource>(filterData);
+                var result = new QueryResult<EmployeeDto>();
+                var filter = _mapper.Map<FilterResource, Filter>(filterResource);
+                var queryResult = _employeeService.GetAllPaged(filter);
+
+                result = _mapper.Map<QueryResult<Employee>, QueryResult<EmployeeDto>>(queryResult);
+          
+                return Json(new { data = result.Items, count = result.TotalItems });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, "Error while retriving employees");
+            }
+        }
+
+
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]

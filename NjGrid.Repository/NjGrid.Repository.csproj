@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NjGrid.DataAccess\NjGrid.DataAccess.csproj" />
+    <ProjectReference Include="..\NjGrid.Infrastructure\NjGrid.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
