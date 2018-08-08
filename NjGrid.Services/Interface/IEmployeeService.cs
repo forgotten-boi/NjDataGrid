@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace NjGrid.Services.Interface
 {
-    public interface IEmployeeService : IApplicationService<Employee, int>
-    {
-        Task<ValidationDto<EmployeeDto>> CreateUpdateEmployeeAsync(EmployeeDto model);
+    public interface IEmployeeService : IApplicationService<Employee,int>
+    { 
     }
 }

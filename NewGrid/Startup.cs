@@ -8,6 +8,11 @@ using Microsoft.Extensions.DependencyInjection;
 using NjGrid.DataAccess;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using NjGrid.Repository.Repositories;
+using NjGrid.Services.Repositories;
+using NjGrid.Services.Interface;
+using Microsoft.AspNetCore.Http;
 
 namespace NjGrid
 {
@@ -23,6 +28,12 @@ namespace NjGrid
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(Configuration);
+            services.AddScoped(typeof(IEmployeeRepository), typeof(EmployeeRepository));
+            services.AddScoped(typeof(IEmployeeService), typeof(EmployeeService));
+
+
+        
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -32,11 +43,12 @@ namespace NjGrid
                 configuration.RootPath = "ClientApp/dist";
             });
 
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext appContext)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext appContext, IMapper mapper)
         {
             if (env.IsDevelopment())
             {
@@ -77,7 +89,7 @@ namespace NjGrid
                 var dbContext = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
                 ///  dbContext.Database.Migrate();
             }
-
+            mapper.ConfigurationProvider.AssertConfigurationIsValid();
             //DbInitializer.Initialize(appContext);
         }
     }
