@@ -1,4 +1,5 @@
-﻿using NjGrid.Entity.BaseEntity;
+﻿using Microsoft.EntityFrameworkCore;
+using NjGrid.Entity.BaseEntity;
 using NjGrid.Entity.DtoModel;
 using NjGrid.Entity.Entities;
 using NjGrid.Infrastructure.Extensions;
@@ -32,21 +33,22 @@ namespace NjGrid.Repository
             return await Repository.GetAllAsync();
         }
 
-        public QueryResult<T> GetAllPaged(Filter filter)
+        public async Task<QueryResult<T>> GetAllPagedAsync(Filter filter)
         {
             var query = Repository.GetAllQueryable();
-            var result = new QueryResult<T>();
+            var result = new QueryResult<T>
+            {
+                TotalItems = query.Count(),
 
-            result.TotalItems = query.Count();
-
-            result.Items = query.ApplyCompletePagination(filter).ToList();
+                Items = await query.ApplyCompletePagination(filter).ToListAsync()
+            };
             return result;
         }
 
         public virtual async Task<QueryResult<T>> GetAllAsync(IQueryObject queryObj)
         {
             var result = new QueryResult<T>();
-            var query = Repository.GetAllAsync();
+            var query = await Repository.GetAllAsync();
 
             //foreach (var prop in typeof(T).GetProperties().ToList())
             //{

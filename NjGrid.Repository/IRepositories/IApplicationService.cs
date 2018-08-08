@@ -19,6 +19,6 @@ namespace NjGrid.Repository.IRepositories
         Task<T> GetByIDAsync(T2 id);
         Task<IEnumerable<T>> GetFilteredAsync(Expression<Func<T, bool>> where);
         Task<T> FindByIdAsync(Expression<Func<T, bool>> where);
-        QueryResult<T> GetAllPaged(Filter filter);
+        Task<QueryResult<T>> GetAllPagedAsync(Filter filter);
     }
 }

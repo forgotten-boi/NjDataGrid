@@ -176,7 +176,7 @@ namespace NjGrid.Infrastructure.Extensions
 
             Type myType = other.GetType();
             IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties());
-            bool isEqual = true;
+          
             foreach (PropertyInfo prop in props)
             {
                 bool? isVirtual = prop.IsVirtual();
@@ -196,17 +196,17 @@ namespace NjGrid.Infrastructure.Extensions
                         }
                         else if (firstValue == null && secondValue != null)
                         {
-                            isEqual = false;
+                          
                             return false;
                         }
                         else if (firstValue != null && secondValue == null)
                         {
-                            isEqual = false;
+                           
                             return false;
                         }
                         else if (!firstValue.Equals(secondValue))
                         {
-                            isEqual = false;
+                          
                             return false;
 
                         }

@@ -91,7 +91,7 @@ namespace NjGrid.Controllers
                 //var filterResource = JsonConvert.DeserializeObject<FilterResource>(filterData);
                 var result = new QueryResult<EmployeeDto>();
                 var filter = _mapper.Map<FilterResource, Filter>(filterResource);
-                var queryResult = _employeeService.GetAllPaged(filter);
+                var queryResult = await _employeeService.GetAllPagedAsync(filter);
 
                 result = _mapper.Map<QueryResult<Employee>, QueryResult<EmployeeDto>>(queryResult);
           
@@ -99,6 +99,7 @@ namespace NjGrid.Controllers
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Error while retriving employees");
             }
         }
