@@ -1,0 +1,57 @@
+<h2 md-dialog-title>Employee Details</h2>
+
+<mat-dialog-content>
+    <h3>Personal Details</h3>
+    <p>
+        <span>Employee Name:<strong>{{data.employee.fullName}}</strong></span>
+    </p>
+
+    <p>
+        <span>Sex:<strong>{{data.employee.sex}}</strong></span>
+    </p>
+    <p>Bank Name:<strong>{{data.employee.bankName}}</strong></p>
+    <p>Bank Ac/No:<strong>{{data.employee.bank_AccountNo}}</strong></p>
+   
+    <p>
+
+    </p>
+
+    <h3>Employee Status</h3>
+    <p>
+        <span>Status:<strong>{{data.employee.status}}</strong></span>
+    </p>
+
+    <h3>Contact Details</h3>
+    <p>
+        <span>Email:<strong>{{data.employee.email}}</strong></span>
+    </p>
+    <p>
+        <span>Contact Person:<strong>{{data.employee.contactPerson}}</strong></span>
+    </p>
+    <p>
+        <span>Permanent Address:<strong>{{data.employee.permanentAddress}}</strong></span>
+    </p>
+    <p>
+        <span>Temporary Address:<strong>{{data.employee.temporaryAddress}}</strong></span>
+    </p>
+    <p>
+        <span>Mobile Number1:<strong>{{data.employee.primaryMobileNo}}</strong></span>
+    </p>
+
+    <h3>Advance Salary Details</h3>
+    <p>
+        <span>Deduction From Date:<strong>{{data.employee.deducationFromDate}}</strong></span>
+    </p>
+    <p>
+        <span>Deduction To Date:<strong>{{data.employee.deducationToDate}}</strong></span>
+    </p>
+    <p>
+        <span>Advance Salary Amount:<strong>{{data.employee.advanceAmount}}</strong></span>
+    </p>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+    <!--<button md-button [md-dialog-close]="true">Yes</button>-->
+
+</mat-dialog-actions>

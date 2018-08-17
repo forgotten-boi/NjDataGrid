@@ -1,0 +1,28 @@
+﻿<div class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>EMPLOYEE REGISTRATION</h2>
+                    <ul class="header-dropdown m-r--5">
+                        <li>
+                            <a [routerLinkActive]="['active']" title="Add New Employee" [routerLink]="['/employeeAdd']">
+                                <i class="material-icons">add_box</i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body">
+       
+                    <jDataGrid (populateData)="populateEmployee()" [DisplayActionColumn]="true" (displayButton)="CheckIfDisplay($event)" [displayVar]="displayVar" [columnsList]="columns" [query]="query" [EventButton]="EventButton" [CustomColumnsList]="CustomColumn"  [tableData]="Employee" [total-items]="query.totalItems" [page-size]="query.pageSize"  (ActionEvents)="ActionEvents($event)"  [editLink]="editLink"  (page-changed)="onPageChange($event)"></jDataGrid> <!--(DeleteData)="deleteEmployee($event)"-->
+                    <div class="pull-right col-sm-2" *ngIf="CustomColumn">
+                        <button class="btn btn-default" (click)="SendAll($event)">SendAll</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="view-side-form">
+        <router-outlet></router-outlet>
+    </div>
+</div>

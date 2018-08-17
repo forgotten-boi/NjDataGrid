@@ -1,0 +1,211 @@
+<div class="container-fluid">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                {{title | uppercase }}
+            </div>
+            <div class="body">
+                <form #f="ngForm" novalidate (ngSubmit)="saveEmployee(f)">
+                    <div class="col-sm-12">
+                        <div class="col-sm-3" [ngClass]="{'has-danger': firstName.invalid && (firstName.dirty || firstName.touched), 'has-success': firstName.valid && (firstName.dirty || firstName.touched) }">
+                            <label for="fname" class="text-nowrap">First Name</label>
+                            <div class="form-line">
+                                <input type="hidden" [(ngModel)]="employee.id" name="id" />
+                                <input type="text" required name="firstName" [(ngModel)]="employee.firstName" class="form-control" #firstName="ngModel" />
+                            </div>
+                            <div class="alert alert-danger" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+                                <p *ngIf="firstName.errors.required">First Name is required</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="lname" class="text-nowrap">Last Name</label>
+                            <div class="form-line">
+                                <input type="text" required name="lastName" [(ngModel)]="employee.lastName" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="email" class="text-nowrap">Email Address</label>
+                            <div class="form-line">
+                                <input id="email" type="text" required name="email" validateEmail [(ngModel)]="employee.email" class="form-control" #email="ngModel" [email]="true">
+                                <!--<small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>-->
+                                <!--<input type="email" required name="email" [(ngModel)]="employee.email" class="form-control" #email="ngModel" [email]="true" />-->
+                            </div>
+                            <!--<small [hidden]="email.errors.required" class="text-danger">Email is required</small>
+                            <small [hidden]="email.valid || (email.pristine)" class="text-danger">Please enter a valid email</small>-->
+                            <div class="alert alert-danger" *ngIf="email.errors && (email.dirty || email.touched)">
+                                <p *ngIf="email.errors.required">Email is required</p>
+                                <p [hidden]="email.valid || (email.pristine)" class="text-danger">Please enter a valid email</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="dob" class="text-nowrap">Date Of Birth</label>
+                            <div class="form-line" style="height:31px;">
+                                <!-- <date-picker [(ngModel)]="employee.dob" name="dob"></date-picker> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3" [ngClass]="{'has-danger': sex.invalid && (sex.dirty || sex.touched), 'has-success': sex.valid && (sex.dirty || sex.touched) }">
+                            <label for="sex" class="text-nowrap">Gender</label>
+                            <div class="form-line">
+                                <select (change)="parseValue($event.target.value)" [(ngModel)]="employee.sex" name="sex" class="form-control show-tick" #sex="ngModel">
+                                    <option>--select--</option>
+                                    <option *ngFor="let name of options"
+                                            [value]="name" [selected]="employee.sex == name">
+                                        {{name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="alert alert-danger" *ngIf="sex.errors && (sex.dirty || sex.touched)">
+                                <p *ngIf="sex.errors.required">You must select sex:</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label class="text-nowrap">Primary Mobile No.</label>
+                            <div class="form-line">
+                                <input type="text" required name="primaryMobileNo" [(ngModel)]="employee.primaryMobileNo" class="form-control" #primaryMobileNo="ngModel" />
+                            </div>
+                            <div class="alert alert-danger" *ngIf="primaryMobileNo.errors && (primaryMobileNo.dirty || primaryMobileNo.touched)">
+                                <p *ngIf="primaryMobileNo.errors.required">Primary mobile number is required</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="text-nowrap">Secondary Mobile No.</label>
+                            <div class="form-line">
+                                <input type="text" name="secondaryMobileNo" [(ngModel)]="employee.secondaryMobileNo" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3">
+                            <label for="name" class="text-nowrap">Contact Person</label>
+                            <div class="form-line">
+                                <input type="text" required name="contactPerson" [(ngModel)]="employee.contactPerson" class="form-control" #contactPerson="ngModel" />
+                            </div>
+                            <div class="alert alert-danger" *ngIf="contactPerson.errors && (contactPerson.dirty || contactPerson.touched)">
+                                <p *ngIf="contactPerson.errors.required">Contact person is required</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="paddress" class="text-nowrap">Permanent Address</label>
+                            <div class="form-line">
+                                <input type="text" required name="permanentAddress" [(ngModel)]="employee.permanentAddress" class="form-control" #permanentAddress="ngModel" />
+                            </div>
+                            <div class="alert alert-danger" *ngIf="permanentAddress.errors && (permanentAddress.dirty || permanentAddress.touched)">
+                                <p *ngIf="permanentAddress.errors.required">permanent Address is required</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="name" class="text-nowrap">Temporary Address</label>
+                            <div class="form-line">
+                                <input type="text" name="temporaryAddress" [(ngModel)]="employee.temporaryAddress" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="joiningDate" class="text-nowrap">Joining Date</label>
+                            <div class="form-line" style="height:31px;">
+                                <!-- <date-picker [(ngModel)]="employee.joiningDate" name="joiningDate"></date-picker> -->
+                                <!--<input type="text" class="datepicker form-control" placeholder="Please choose a date..." [(ngModel)]="employee.joiningDate" name="joiningDate">-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+
+
+                        <div class="col-sm-3">
+                            <label for="name" class="text-nowrap">Employee Status</label>
+                            <select (change)="parseValueEmployee($event.target.value)" [(ngModel)]="employee.status" name="status" class="form-control" #status="ngModel">
+                                <option>--select--</option>
+                                <option *ngFor="let name of EmployeeStatusOptions" [value]="name" [selected]="employee.status == name">
+                                    {{name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="location" class="text-nowrap">Location</label>
+                            <div class="form-line">
+                                <input type="text" name="location" [(ngModel)]="employee.location" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-2">
+                            <label for="bankName" class="text-nowrap">Bank Name</label>
+                            <div class="form-line">
+                                <input type="text" name="bankName" [(ngModel)]="employee.bankName" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="bank_AccountNo" class="text-nowrap">Bank AC NO.</label>
+                            <div class="form-line">
+                                <input type="text" name="bank_AccountNo" [(ngModel)]="employee.bank_AccountNo" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="ciT_AccountNo" class="text-nowrap">CIT AC NO.</label>
+                            <div class="form-line">
+                                <input type="text" name="ciT_AccountNo" [(ngModel)]="employee.ciT_AccountNo" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="pF_AccountNo" class="text-nowrap">PF AC NO.</label>
+                            <div class="form-line">
+                                <input type="text" name="pF_AccountNo" [(ngModel)]="employee.pF_AccountNo" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="paNNumber" class="text-nowrap">PAN</label>
+                            <div class="form-line">
+                                <input type="text" name="paNNumber" [(ngModel)]="employee.paNNumber" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="officeCode" class="text-nowrap">Office Code</label>
+                            <div class="form-line">
+                                <input type="text" name="officeCode" [(ngModel)]="employee.officeCode" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3" *ngIf="!isEdit">
+                            <label class="text-nowrap">User Name</label>
+                            <div class="form-line">
+                                <input type="text" required name="userName" [(ngModel)]="employee.userName" class="form-control" #userName="ngModel" />
+                            </div>
+                            <div class="alert alert-danger" *ngIf="userName.errors && (userName.dirty || userName.touched)">
+                                <p *ngIf="userName.errors.required">Username is required</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="roleId" class="text-nowrap">Role</label>
+                            <div class="form-line">
+                                <select name="roleID" required class="form-control show-tick" [(ngModel)]="employee.roleID" [ngModelOptions]="{standalone: true}">
+                                    <option [ngValue]="-1" disabled>PLEASE SELECT</option>
+                                    <option *ngFor="let x of role" [value]="x.roleID">{{x.roleName}}</option>
+                                </select>
+                            </div>
+                            <!--<div class="alert alert-danger" *ngIf="(!roleID.error && (!roleID.valid && roleID.dirty)">
+                                <p *ngIf="roleID.errors.required">Role is required</p>
+                            </div>-->
+
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="checkbox" name="isActive" id="isActive" [(ngModel)]="employee.isActive" class="filled-in" checked />
+                            <label for="isActive" class="text-nowrap">Is Active</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default" [disabled]="f.invalid" *ngIf="!isEdit">SUBMIT</button>
+                        <button type="submit" class="btn btn-default" [disabled]="f.invalid" *ngIf="isEdit">UPDATE</button>
+                        <button type="submit" class="btn btn-default waves-effect" [routerLink]="['/employeeList']">CANCEL</button>
+
+                    </div>
+                </form>
+                <div *ngIf="errors" class="alert alert-danger" role="alert">
+                    <strong>Oops!</strong> {{errors}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
