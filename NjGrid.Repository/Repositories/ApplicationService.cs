@@ -28,7 +28,7 @@ namespace NjGrid.Repository
 
         public IRepository<T, T2> Repository { get; }
 
-        public virtual async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await Repository.GetAllAsync();
         }
@@ -50,26 +50,10 @@ namespace NjGrid.Repository
             var result = new QueryResult<T>();
             var query = await Repository.GetAllAsync();
 
-            //foreach (var prop in typeof(T).GetProperties().ToList())
-            //{
-            ////Check if property is not null, not virtual and is not primary key
-            //    bool? isVirtual = prop.IsVirtual();
-            //}
-            //var columnsMap = new Dictionary<string, Expression<Func<T, object>>>()
-            //{
+            result.TotalItems = query.Count();
 
-            //    //["make"] = v => v.Model.Make.Name,
-            //    //["model"] = v => v.Model.Name,
-            //    //["contactName"] = v => v.ContactName
-            //};
 
-            //query = query.ApplyOrdering(queryObj, columnsMap);
-
-            //result.TotalItems = query.CountAsync();
-
-            //query = query.ApplyPaging(queryObj);
-
-            //result.Items = await query.ToListAsync();
+            result.Items = query.ToList();
 
             return result;
 
