@@ -11,6 +11,9 @@ import { MatDialog } from '@angular/material';
 import { EmployeeProfileDetailsDialog } from './EmployeeProfileDetails';
 import { AlertNotificationService } from '../utils/AlertNotificationService';
 import { finalize } from 'rxjs/operators';
+import { debug } from 'util';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
     selector: 'app-employee-list',
@@ -64,7 +67,8 @@ export class EmployeeListComponent implements OnInit {
         this.query.searchData = [];
         this.employee = {} as IEmployeeInterface
     }
-    ngOnInit(): void {
+  ngOnInit(): void {
+    
         this.populateEmployee();
     }
 
@@ -75,11 +79,13 @@ export class EmployeeListComponent implements OnInit {
             }
         });
     }
-    public populateEmployee() {
+  public populateEmployee() {
         this.employeeService.getPagedEmployees(this.query).subscribe(Result => {
             this.Employee = <IEmployeeInterface[]>Result["data"],
-                this.query.totalItems = Result["count"]
+            this.query.totalItems = Result["count"]
         });
+     
+
     }
 
     deleteEmployee(id: number) {
@@ -102,7 +108,7 @@ export class EmployeeListComponent implements OnInit {
     }
 
     CheckIfDisplay(displayVar: any) {
-        //debugger;
+        //
         if (displayVar.id > 3)
             this.displayVar.Display = false;
         else
@@ -114,7 +120,7 @@ export class EmployeeListComponent implements OnInit {
         var def = this.Employee;
         var j = 0;
         for (var j = 0; j < 10; j++) {
-            debugger;
+            
             var isSelected = def[j].isSelected;
         }
     }

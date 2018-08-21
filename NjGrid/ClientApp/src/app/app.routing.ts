@@ -9,15 +9,15 @@ import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
-  { path: 'employeeAdd', component: EmployeeAddComponent },
+  { path: 'employeeadd', component: EmployeeAddComponent },
   { path: 'employeeManagement', component: EmployeeAddDetailsComponent },
-  { path: 'employeeList', component: EmployeeListComponent },
-  { path: 'employeeEdit/:id', component: EmployeeAddComponent },
-  { path: 'employeeProfile', component: EmployeeDetailsComponent },
+  { path: 'employeelist', component: EmployeeListComponent },
+  { path: 'employeeedit/:id', component: EmployeeAddComponent },
+  { path: 'employeeprofile', component: EmployeeDetailsComponent },
   { path: 'counter', component: CounterComponent },
   { path: 'fetch-data', component: FetchDataComponent },
   { path: 'home', component: HomeComponent },
-  { path: '', component: HomeComponent, pathMatch: 'full' }
+  { path: '', component: EmployeeListComponent, pathMatch: 'full' }
 ];
 
 export const routing = RouterModule.forRoot(routes);

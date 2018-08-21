@@ -14,8 +14,8 @@ using NjGrid.Repository.IRepositories;
 
 namespace NjGrid.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    //[Route("api/[controller]")]
+    //[ApiController]
     public class EmployeeController : Controller //ControllerBase
     {
         public IEmployeeService _employeeService { get; set; }
@@ -31,60 +31,10 @@ namespace NjGrid.Controllers
         [HttpGet]
         public async Task<IEnumerable<Employee>> Get()
         {
-            //return new string[] { "value1", "value2" };
-         
-         
             var result = await _employeeService.GetAllAsync();
             return result;
-            //return Ok(result);
-
-            //return Json(new { data = result, count = result.ToList().Count });
+         
         }
-
-        // GET: api/Employee/5
-        [HttpGet("{id}", Name = "Get")]
-        public async Task<IActionResult> Get(int id)
-        {
-            var result = await _employeeService.GetAllAsync();
-
-            return Json(result);
-            //return "value";
-        }
-
-        // POST: api/Employee
-        //[HttpPost]
-        //public async Task<IActionResult> Post([FromBody] EmployeeDto model)
-        //{
-        //    try
-        //    {
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return BadRequest(ModelState);
-        //        }
-        //        var employee = Mapper.Map<EmployeeDto, Employee>(model);
-        //        try
-        //        {
-        //            await _employeeService.AddAsync(employee);
-        //            return new JsonResult(new { result = "True", message = "Success"});
-        //        }
-        //        catch (Exception ex)
-        //        {
-
-        //            return new JsonResult(new { result = "False", message = ex.Message});
-        //        }
-               
-        //        //if (validationDto.IsSucess)
-        //        //{
-        //        //    return new JsonResult(new { result = validationDto.IsSucess, message = validationDto.Message });
-        //        //}
-        //        //return new JsonResult(new { result = validationDto.IsSucess, message = validationDto.Message });
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode((int)HttpStatusCode.InternalServerError, "Error while creating employee");
-        //    }
-        //}
 
         // PUT: api/Employee/5
         [HttpPut("{id}")]

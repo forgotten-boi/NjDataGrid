@@ -24,6 +24,10 @@ import { MatProgressSpinnerModule, MatIconModule, MatToolbarModule, MatDialogMod
 import { CommonGridModule } from './njdatagrid/commongrid.module';
 import { CommonModule } from '@angular/common';
 import { routing } from './app.routing';
+import { HttpModule } from '@angular/http';
+import { ConfigService } from './utils/config.service';
+import { DialogService } from 'ng6-bootstrap-modal';
+import { AlertNotificationService } from './utils/AlertNotificationService';
 
 @NgModule({
   declarations: [
@@ -45,19 +49,20 @@ import { routing } from './app.routing';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    HttpModule,
     FormsModule,
     CommonModule,
     //routing,
     RouterModule.forRoot([
       { path: 'employeeAdd', component: EmployeeAddComponent },
       { path: 'employeeManagement', component: EmployeeAddDetailsComponent },
-      { path: 'employeeList', component: EmployeeListComponent },
+      { path: 'employeelist', component: EmployeeListComponent },
       { path: 'employeeEdit/:id', component: EmployeeAddComponent },
       { path: 'employeeProfile', component: EmployeeDetailsComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'home', component: HomeComponent },
-      { path: '', component: HomeComponent, pathMatch: 'full' }
+      { path: '', component: EmployeeListComponent, pathMatch: 'full' }
     ]),
     MatButtonModule,
     MatMenuModule,
@@ -68,10 +73,11 @@ import { routing } from './app.routing';
     MatIconModule,
     MatProgressSpinnerModule,
     CommonGridModule,
+    //ConfigService
     //routing,
 
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService, ConfigService, DialogService, AlertNotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

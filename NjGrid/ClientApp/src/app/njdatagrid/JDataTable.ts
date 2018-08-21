@@ -143,13 +143,13 @@ export class jDataTableComponent implements OnInit {//implements OnChanges {
     }
 
     //SendAll($event) {
-    //    debugger;
+    //    bool
     //    var abc = this.columns;
     //    var def = this.DataList;
     //    var j = 0;
     //    for (var j = 0; j < 10; j++)
     //    {
-    //        debugger;
+    //        bool
     //        var isSelected = def[j].isSelected;
     //    }
     //}

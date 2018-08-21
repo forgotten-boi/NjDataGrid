@@ -12,6 +12,8 @@ import { ConfigService } from '../utils/config.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseService } from '../services/base.service';
+import { debug } from 'util';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class EmployeeService extends BaseService {
@@ -27,7 +29,8 @@ export class EmployeeService extends BaseService {
         let headers = new Headers();
         var data = JSON.stringify(employee);
         headers.append('Content-Type', 'application/json');
-        let options = new RequestOptions({ headers: headers });
+      let options = new RequestOptions({ headers: headers });
+      
       return this.http
         .post(
           this.baseUrl + 'Employee/CreateEmployee', data, options
@@ -53,24 +56,25 @@ export class EmployeeService extends BaseService {
             //.catch(this.handleError);
     }
 
-    getEmployee(): Observable<IEmployeeInterface[]> {
-        return this.http.get(this.baseUrl + 'Employee/GetAllEmployee').pipe(map((response: Response) => {
-            var result = <IEmployeeInterface[]>response.json();
-            return result;
-        }))
-            //.catch(this.handleError);
-    }
+  //getEmployee(): Observable<IEmployeeInterface[]> {
+  //  
+  //      return this.http.get(this.baseUrl + 'Employee/GetAllEmployee').pipe(map((response: Response) => {
+  //          var result = <IEmployeeInterface[]>response.json();
+  //          return result;
+  //      }))
+  //          //.catch(this.handleError);
+  //  }
 
-    getEmployeeForSalaryMapping(): Observable<IEmployeeInterface[]> {
-      return this.http.get(this.baseUrl + 'Employee/GetEmployeeForSalaryMapping').pipe(map((response: Response) => {
-        var result = <IEmployeeInterface[]>response.json();
-        return result;
-      }));
-            //.catch(this.handleError);
-    }
+    //getEmployeeForSalaryMapping(): Observable<IEmployeeInterface[]> {
+    //  return this.http.get(this.baseUrl + 'Employee/GetEmployeeForSalaryMapping').pipe(map((response: Response) => {
+    //    var result = <IEmployeeInterface[]>response.json();
+    //    return result;
+    //  }));
+    //        //.catch(this.handleError);
+    //}
 
   getPagedEmployees(filter): Observable<IEmployeeInterface[]> {
-    debugger;
+    
         let headers = new Headers();
         var data = JSON.stringify(filter);
         headers.append('Content-Type', 'application/json');
@@ -78,6 +82,9 @@ export class EmployeeService extends BaseService {
       return this.http.post(this.baseUrl + 'Employee/GetPagedEmployee', data, options)
         .pipe(map((response: Response) => {
           var result = <IEmployeeInterface[]>response.json();
+          for (let emp of result) {
+            emp.fullName = emp.firstName + " " + emp.lastName;
+          }
           return result;
         }));
             //.catch(this.handleError);

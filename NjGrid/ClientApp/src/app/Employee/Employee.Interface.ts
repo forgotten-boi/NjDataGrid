@@ -1,4 +1,4 @@
-﻿export interface IEmployeeInterface {
+export interface IEmployeeInterface {
     id: number,
     bankName: string,
     bank_AccountNo: string,
@@ -10,6 +10,7 @@
     email: string,
     firstName: string,
     lastName: string,
+    fullName: string,
     isActive: boolean,
     joiningDate: Date,
     lastDate: Date,
@@ -24,7 +25,7 @@
     temporaryAddress: string,
     username: string,
     password: string,
-    fullName: string
+    
     advanceAmount: number;
     advanceSalaryDate: Date;
     deducationFromDate: Date;
@@ -40,8 +41,8 @@
     paNNumber: string;
     location: string;
     officeCode: string;
-    roleId: number;
-    employeeJoiningDate
+  roleId: number;
+  employeeJoiningDate: Date;
 }
 
 export interface Role {
