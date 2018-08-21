@@ -40,7 +40,7 @@ namespace NjGrid.Repository
             {
                 TotalItems = query.Count(),
 
-                Items = await query.ApplyCompletePagination(filter).ToListAsync()
+                Items =  query.ApplyCompletePagination(filter).ToList()
             };
             return result;
         }

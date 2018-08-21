@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: 'employeeedit/:id', component: EmployeeAddComponent },
   { path: 'employeeprofile', component: EmployeeDetailsComponent },
   { path: 'counter', component: CounterComponent },
-  { path: 'fetch-data', component: FetchDataComponent },
+  { path: 'fetch-data', component: EmployeeListComponent },
+  //{ path: 'fetch-data', component: FetchDataComponent },
   { path: 'home', component: HomeComponent },
   { path: '', component: EmployeeListComponent, pathMatch: 'full' }
 ];
