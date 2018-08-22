@@ -54,7 +54,15 @@ namespace NjGrid.Controllers
                 var queryResult = await _employeeService.GetAllPagedAsync(filter);
 
                 result = _mapper.Map<QueryResult<Employee>, QueryResult<EmployeeDto>>(queryResult);
-          
+
+                Func<string, string, string> FullName = 
+                    delegate(string firstName, string lastName)
+                  {
+                      return firstName + " " + lastName;
+
+                  };
+                result.Items.ToList().ForEach(p => p.FullName = FullName(p.FirstName, p.LastName));
+               
                 return Json(new { data = result.Items, count = result.TotalItems });
             }
             catch (Exception ex)

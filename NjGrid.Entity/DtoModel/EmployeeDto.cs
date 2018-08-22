@@ -16,6 +16,7 @@ namespace NjGrid.Entity.DtoModel
 
         [Required]
         public string LastName { get; set; }
+        
 
         public DateTime? DOB { get; set; }
 
@@ -31,5 +32,6 @@ namespace NjGrid.Entity.DtoModel
         [Required]
         public string Sex { get; set; }
         public bool IsActive { get; set; }
+        public string FullName { get; set; }
     }
 }

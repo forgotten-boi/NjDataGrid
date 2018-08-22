@@ -14,7 +14,8 @@ namespace NjGrid
        
         public MappingProfile()
         {
-            CreateMap<Employee, EmployeeDto>().ForMember(x => x.EmployeeId, opts => opts.MapFrom(x => x.ID)).ReverseMap();
+            CreateMap<Employee, EmployeeDto>().ForMember(x => x.EmployeeId, opts => opts.MapFrom(x => x.ID))
+                .ForMember(x=>x.FullName,opts=>opts.Ignore()).ReverseMap();
             CreateMap<FilterResource, Filter>().ReverseMap();
             //CreateMap(typeof(QueryResult<>), typeof(QueryResult<>));
         }

@@ -12,6 +12,8 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace NjGrid.Repository
 {
     public abstract class ApplicationService<T, T2> : IApplicationService<T, T2> where T : BaseEntity<T2>
@@ -36,11 +38,12 @@ namespace NjGrid.Repository
         public async Task<QueryResult<T>> GetAllPagedAsync(Filter filter)
         {
             var query = Repository.GetAllQueryable();
+            var pagedQuery = query.ApplyCompletePagination(filter);
             var result = new QueryResult<T>
             {
                 TotalItems = query.Count(),
 
-                Items =  query.ApplyCompletePagination(filter).ToList()
+                Items = pagedQuery.AsEnumerable()
             };
             return result;
         }
