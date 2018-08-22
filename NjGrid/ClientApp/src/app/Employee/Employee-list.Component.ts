@@ -33,17 +33,20 @@ export class EmployeeListComponent implements OnInit {
         page: 1,
         pageSize: this.PAGE_SIZE,
         totalItems: 0,
-        searchableColumn: "Username,FullName,Email,Department",
+        searchableColumn: "FullName,Email,Location",
         searchData: [],
     };
     columns = [ // String, Date, Number
-        { key: 'username', dbKey: 'Username', title: 'USER NAME', isSortable: true, isSearchable: true, datatype: "String", value: "" },
+        //{ key: 'username', dbKey: 'Username', title: 'USER NAME', isSortable: true, isSearchable: true, datatype: "String", value: "" },
         { key: 'fullName', dbKey: 'FullName', title: 'FULL NAME', isSortable: true, isSearchable: true, datatype: "String", value: "" },
         { key: 'email', dbKey: 'Email', title: 'EMAIL', isSortable: true, isSearchable: true, datatype: "String", value: "" },
-        { key: 'designation', dbKey: 'Designation', title: 'DESIGNATION', isSortable: true, isSearchable: true, datatype: "String", value: "" },
-        { key: 'department', dbKey: 'Department', title: 'DEPARTMENT', isSortable: true, isSearchable: true, datatype: "String", value: "" },
-        { key: 'martialStatus', dbKey: 'MartialStatus', title: 'MARITAL STATUS', isSortable: true, isSearchable: false, datatype: "String", value: "" },
-        { key: 'employeeJoiningDate', dbKey: 'EmployeeJoiningDate', title: 'Joining Date', isSortable: true, isSearchable: true, datatype: "String", value: "" },
+        //{ key: 'designation', dbKey: 'Designation', title: 'DESIGNATION', isSortable: true, isSearchable: true, datatype: "String", value: "" },
+        //{ key: 'department', dbKey: 'Department', title: 'DEPARTMENT', isSortable: true, isSearchable: true, datatype: "String", value: "" },
+        //{ key: 'martialStatus', dbKey: 'MartialStatus', title: 'MARITAL STATUS', isSortable: true, isSearchable: false, datatype: "String", value: "" },
+        { key: 'sex', dbKey: 'Sex', title: 'Gender', isSortable: true, isSearchable: false, datatype: "String", value: "" },
+      { key: 'location', dbKey: 'Location', title: 'Address', isSortable: true, isSearchable: false, datatype: "String", value: "" },
+      { key: 'primaryMobileNo', dbKey: 'PrimaryMobileNo', title: 'Mobile No:', isSortable: true, isSearchable: false, datatype: "String", value: "" },
+      { key: 'employeeJoiningDate', dbKey: 'EmployeeJoiningDate', title: 'Joining Date', isSortable: true, isSearchable: true, datatype: "Date", value: "" },
         { key: 'isActive', dbKey: 'IsActive', title: 'ACTIVE STATUS', isSortable: true, isSearchable: false, datatype: "String", value: "" }
     ];
 

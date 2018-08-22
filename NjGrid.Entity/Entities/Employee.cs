@@ -23,5 +23,19 @@ namespace NjGrid.Entity.Entities
         [Required]
         public string Sex { get; set; }
         public bool IsActive { get; set; }
+
+        public DateTime JoiningDate { get; set; }
+        public DateTime? LastDate { get; set; }
+
+        public string CIT_AccountNo { get; set; }
+        public string PF_AccountNo { get; set; }
+        public string Bank_AccountNo { get; set; }
+        public string BankName { get; set; }
+        public string PANNumber { get; set; }
+        public string Location { get; set; }
+        public string OfficeCode { get; set; }
+
+        public string ContactPerson { get; set; }
+        public string Status { get; set; }
     }
 }
