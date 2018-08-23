@@ -97,7 +97,7 @@ namespace NjGrid
                 ///  dbContext.Database.Migrate();
             }
             mapper.ConfigurationProvider.AssertConfigurationIsValid();
-            //DbInitializer.Initialize(appContext);
+            DbInitializer.Initialize(appContext);
         }
     }
 }
