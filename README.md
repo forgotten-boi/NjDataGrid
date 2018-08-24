@@ -1,7 +1,7 @@
 # NjDataGrid
 A datagrid for angular 6 with .net core 2.1. Ongoing project
 
-##Frameworks
+## Frameworks
 
 1. [.Net Core 2.1](https://www.microsoft.com/net/download)
 
