@@ -7,9 +7,8 @@ A datagrid for angular 6 with .net core 2.1. Ongoing project
 
     1. **Repository Patterns and Dependency Injections**
     2. Generics
-    3. Action
+    3. Actions, Expressions and other delegates
     4. Dynamic Linq
-    5. Expressions and Func
     
 2. [Angular 6](https://angular.io)
     1. Custom Datagrid
