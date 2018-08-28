@@ -1,6 +1,7 @@
 # NjDataGrid
 A datagrid for angular 6 with .net core 2.1. Ongoing project
 
+
 ## Frameworks
 
 1. [.Net Core 2.1](https://www.microsoft.com/net/download)
@@ -40,6 +41,13 @@ Open Command prompt and go to project folder, ```NjGrid```
 * > Inside ClientApp folder inside NjGrid folder, type in command prompt ```npm i```  
 * > Again from NjGrid Folder, Type in command prompt, ```dotnet build```
 * > Type ```dotnet run``` or ```dotnet watch run``` as per your choice or requirements
+
+***
+## Sample Image
+
+> ![NjDatagrid Sample Image](NjGrid\NjDataGrid.png)
+
+***
 
 ## Our saying
    > Though We have tried to implement easy to understand and readable as well as generic functions without compromising with the best coding practise along with standard and efficient codes, there may be sections and areas needed to improve.
