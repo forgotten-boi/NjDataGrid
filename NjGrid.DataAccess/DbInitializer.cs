@@ -15,10 +15,12 @@ namespace NjGrid.DataAccess
                 _context.Employee.AddRange(
                new Entity.Entities.Employee
                {
-                   FirstName = "Ram",
-                   LastName = "Sharan Gupta",
+                   FirstName = "Shova",
+                   LastName = "Gupta",
                    PrimaryMobileNo = "9823029023",
                    Location = "New Baneshwor",
+                   Email = "info@hotmail.com",
+                   Sex = "F",
                    JoiningDate = DateTime.Now.AddYears(-2)
                },
                  new Entity.Entities.Employee
@@ -28,15 +30,21 @@ namespace NjGrid.DataAccess
                      LastName = "Sharan Gupta",
                      PrimaryMobileNo = "9823029023",
                      Location = "New Baneshwor",
+                     Email = "info@gmail.com",
+                     Sex = "M",
+
                      JoiningDate = DateTime.Now.AddYears(-2)
                  },
                    new Entity.Entities.Employee
                    {
                         //ID = 3,
-                        FirstName = "Ram",
+                        FirstName = "Hari",
                        LastName = "Sharan Gupta",
                        PrimaryMobileNo = "9823029023",
                        Location = "New Baneshwor",
+                       Email = "info@email.com",
+                       Sex = "M",
+
                        JoiningDate = DateTime.Now.AddYears(-2)
                    }
                );
