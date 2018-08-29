@@ -10,8 +10,10 @@ A datagrid for angular 6 with .net core 2.1. Ongoing project
     2. Generics
     3. Actions, Expressions and other delegates
     4. Dynamic Linq
+
    
-   * > Preview2.2 branch uses .net core 2.2. Use this branch only incase you know the risk of using preview version.
+   * > Preview2.2 branch uses .net core 2.2 preview version. Use this branch only incase you know the risk of using preview version.
+
     
 2. [Angular 6](https://angular.io)
     1. Custom Datagrid
