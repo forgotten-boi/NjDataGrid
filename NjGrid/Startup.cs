@@ -29,7 +29,7 @@ namespace NjGrid
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            
+
 
 
             services.AddSingleton(Configuration);
@@ -37,14 +37,15 @@ namespace NjGrid
             services.AddScoped(typeof(IEmployeeService), typeof(EmployeeService));
 
 
-        
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                // configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "ClientApp/dist/ClientApp";
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
