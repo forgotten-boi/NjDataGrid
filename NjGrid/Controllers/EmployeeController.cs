@@ -78,6 +78,27 @@ namespace NjGrid.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+
+        }
+
+        async Task<int> SumOfAsync(int[] numbers)
+
+        {
+            return await Task.Run(function: Computer);
+
+                int Computer() => numbers.Select(i => i * i).Sum();
+
+        }
+        void M<Drum, E>(Drum d, E e) 
+            where Drum: Delegate
+            where E: List<Enum>
+
+        {
+            var abc = (d,e,  Math.PI);
+            bool result = abc == (null,null, 41);
+
+            int a = 1, b = 2;
+            int c = 2;
         }
     }
 }
