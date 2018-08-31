@@ -24,6 +24,7 @@
     "@angular/router": "^6.0.3",
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.4",
+    "hoek": "^5.0.4",
     "ng6-bootstrap-modal": "^1.0.2",
     "rxjs": "^6.2.2",
     "zone.js": "^0.8.26"
