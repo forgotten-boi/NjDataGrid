@@ -8,7 +8,7 @@ namespace NjGrid.Entity.BaseEntity
 {
     public interface IQueryObject
     {
-        List<SearchData> searchData { get; set; }
+        List<SearchData> SearchData { get; set; }
         string SortBy { get; set; }
         bool IsSortAscending { get; set; }
         int Page { get; set; }
