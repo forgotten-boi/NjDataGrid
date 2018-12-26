@@ -17,7 +17,7 @@ namespace NjGrid.Infrastructure.Extensions
 
         public static IQueryable<T> ApplyCompletePagination<T>(this IQueryable<T> query, IQueryObject filter)
         {
-            if (filter.searchData != null && filter.searchData.Count > 0)
+            if (filter.SearchData != null && filter.SearchData.Count > 0)
             {
                 query = query.ApplySearching<T>(filter);
 
@@ -78,7 +78,7 @@ namespace NjGrid.Infrastructure.Extensions
 
         public static IQueryable<T> ApplySearching<T>(this IQueryable<T> query, IQueryObject filter)
         {
-            if (filter.searchData != null && filter.searchData.Count > 0)
+            if (filter.SearchData != null && filter.SearchData.Count > 0)
             {
                 var queryResult = new List<T>();
                 StringBuilder queryString = new StringBuilder();
@@ -89,7 +89,7 @@ namespace NjGrid.Infrastructure.Extensions
                 List<string> conditions = new List<string>();
                 List<Object> objList = new List<object>();
 
-                filter.searchData.ForEach(searchObj =>
+                filter.SearchData.ForEach(searchObj =>
                 {
                     switch (searchObj.Datatype)
                     {

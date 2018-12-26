@@ -14,6 +14,6 @@ namespace NjGrid.Entity.DtoModel
         public int Page { get; set; }
         public byte PageSize { get; set; }
         public string SearchableColumn { get; set; }
-        public List<SearchData> searchData { get; set; }
+        public List<SearchData> SearchData { get; set; }
     }
 }
