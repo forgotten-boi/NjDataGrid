@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="PagedList.Core" Version="1.17.4" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.8.16" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.9" />
   </ItemGroup>
 
   <ItemGroup>

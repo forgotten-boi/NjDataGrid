@@ -16,31 +16,34 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0-preview1-35029" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0-preview1-35029" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0-preview1-35029" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0-preview1-35029" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
     <PackageReference Include="PagedList.Core" Version="1.17.4" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="Model\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="Model\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\Employee\Employee.Routing.ts" />
-    <None Remove="ClientApp\src\app\Employee\Employee.Routing.ts" />
-    <None Remove="ClientApp\src\app\utils\ItemsService.ts" />
-    <None Remove="ClientApp\src\app\utils\ItemsService.ts" />
-    <None Remove="ClientApp\src\app\utils\notification.service.ts" />
-    <None Remove="ClientApp\src\app\utils\notification.service.ts" />
+    <EmbeddedResource Remove="Model\**" />
+    <None Remove="Model\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
+    <None Remove="ClientApp\src\app\Employee\Employee.Routing.ts" />
+    <None Remove="ClientApp\src\app\Employee\Employee.Routing.ts" />
+    <None Remove="ClientApp\src\app\utils\ItemsService.ts" />
+    <None Remove="ClientApp\src\app\utils\ItemsService.ts" />
+    <None Remove="ClientApp\src\app\utils\notification.service.ts" />
+    <None Remove="ClientApp\src\app\utils\notification.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
