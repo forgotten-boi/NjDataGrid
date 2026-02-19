@@ -10,6 +10,7 @@ import { ISearchField } from "../../app/njdatagrid/SearchField";
 
 //import { IEmployeeInterface } from "app/setup/Employee/Employee.Interface";
 @Component({
+    standalone: false,
     selector: 'gridfilter',
     template: `
         <div class="form-group row">

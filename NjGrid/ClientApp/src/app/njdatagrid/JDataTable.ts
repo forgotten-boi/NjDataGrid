@@ -10,6 +10,7 @@ import { ISearchField } from "../../app/njdatagrid/SearchField";
 
 //import { IEmployeeInterface } from "app/setup/Employee/Employee.Interface";
 @Component({
+    standalone: false,
     selector: 'jDataTable',
     template: `
         <table class="table table-bordered table-striped table-hover dataTable">

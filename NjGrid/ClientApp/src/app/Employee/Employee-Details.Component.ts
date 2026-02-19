@@ -1,8 +1,9 @@
-﻿import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IEmployeeInterface } from './Employee.Interface';
 import { EmployeeService } from './Employee.Service';
 
 @Component({
+    standalone: false,
     selector: 'employee-details',
     templateUrl: './Employee-Details.Component.html',
 

@@ -10,6 +10,7 @@ import { AlertNotificationService } from '../utils/AlertNotificationService';
 import { finalize } from 'rxjs/operators';
 
 @Component({
+  standalone: false,
   selector: 'app-employee-list',
   templateUrl: './Employee-list.Component.html'
 })

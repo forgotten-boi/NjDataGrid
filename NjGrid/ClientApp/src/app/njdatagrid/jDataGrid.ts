@@ -14,6 +14,7 @@ import { jDataTableComponent } from '../../app/njdatagrid/JDataTable';
 
 
 @Component({
+    standalone: false,
     selector: 'jDataGrid',
     template: `
         <div class="row clearfix font-12">

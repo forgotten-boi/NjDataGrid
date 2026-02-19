@@ -32,6 +32,7 @@ import { AlertNotificationService } from '../utils/AlertNotificationService';
 //    Contract = 4
 //}
 @Component({
+    standalone: false,
     selector: 'app-employee',
     templateUrl: './Employee-add.Component.html',
     //styleUrls: ['./designation.component.css']

@@ -23,6 +23,7 @@ enum EmployeeStatus {
     Contract = 4
 }
 @Component({
+    standalone: false,
     selector: 'app-employee',
     templateUrl: './EmployeeDetails-add-details.Component.html',
     //styleUrls: ['./designation.component.css']

@@ -7,6 +7,7 @@ export interface AlertModel {
 }
 
 @Component({
+    standalone: false,
     selector: 'alert',
     template: `<div class="modal-dialog">
                 <div class="modal-content">
