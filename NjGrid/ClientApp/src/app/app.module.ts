@@ -20,6 +20,7 @@ import { jDataGridComponent } from './njdatagrid/jDataGrid';
 import { jDataTableComponent } from './njdatagrid/JDataTable';
 import { PaginationComponent } from './njdatagrid/pagination.component';
 import { EmployeeService } from './Employee/Employee.Service';
+import { EmployeeProfileDetailsDialog } from './Employee/EmployeeProfileDetails';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -45,6 +46,7 @@ import { AlertNotificationService } from './utils/AlertNotificationService';
     EmployeeAddDetailsComponent,
     EmployeeDetailsComponent,
     EmployeeListComponent,
+    EmployeeProfileDetailsDialog,
   ],
   imports: [
     BrowserModule,

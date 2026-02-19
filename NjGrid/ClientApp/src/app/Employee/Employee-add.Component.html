@@ -180,9 +180,9 @@
                         <div class="col-sm-3">
                             <label for="roleId" class="text-nowrap">Role</label>
                             <div class="form-line">
-                                <select name="roleID" required class="form-control show-tick" [(ngModel)]="employee.roleID" [ngModelOptions]="{standalone: true}">
+                                <select name="roleId" required class="form-control show-tick" [(ngModel)]="employee.roleId" [ngModelOptions]="{standalone: true}">
                                     <option [ngValue]="-1" disabled>PLEASE SELECT</option>
-                                    <option *ngFor="let x of role" [value]="x.roleID">{{x.roleName}}</option>
+                                    <option *ngFor="let x of role" [value]="x.roleId">{{x.roleName}}</option>
                                 </select>
                             </div>
                             <!--<div class="alert alert-danger" *ngIf="(!roleID.error && (!roleID.valid && roleID.dirty)">

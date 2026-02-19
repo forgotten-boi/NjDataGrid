@@ -1,4 +1,3 @@
-import { MatDialog } from '@angular/material/dialog';
 import { throwError } from 'rxjs';
 
 export abstract class BaseService {
@@ -6,8 +5,8 @@ export abstract class BaseService {
 
     protected handleError(error: any) {
         console.log(error);
-        if (error.status != null && error.status !== undefined) {
-            if (error.status == 500) {
+        if (error.status != null) {
+            if (error.status === 500) {
                 return throwError(() => error);
             }
             return throwError(() => new Error(error.statusText));

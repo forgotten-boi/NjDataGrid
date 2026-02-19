@@ -11,7 +11,7 @@ import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-employee-list',
-  templateUrl: './Employee-list.component.html'
+  templateUrl: './Employee-list.Component.html'
 })
 export class EmployeeListComponent implements OnInit {
   public readonly PAGE_SIZE = 10;
@@ -51,6 +51,7 @@ export class EmployeeListComponent implements OnInit {
     ResetButton: true,
     CheckBoxColumn: false
   }
+  CustomColumn: any[] = [];
   displayVar: any = {};
 
   //CustomColumn = [{ htm: '<a (click)="Delete(data.id)"><i class="material-icons">delete</i></a>' }, {}];
@@ -111,7 +112,11 @@ export class EmployeeListComponent implements OnInit {
       this.displayVar.Display = false;
 
   }
-  SendAll($event) {
+  onPageChange(page: any) {
+    this.query.page = page;
+    this.populateEmployee();
+  }
+  SendAll($event: any) {
     var abc = this.columns;
     var def = this.Employee;
     var j = 0;
