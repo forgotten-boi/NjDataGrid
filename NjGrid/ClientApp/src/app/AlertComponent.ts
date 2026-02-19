@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { DialogComponent, DialogService } from 'ng6-bootstrap-modal';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface AlertModel {
     title: string;
@@ -11,22 +11,19 @@ export interface AlertModel {
     template: `<div class="modal-dialog">
                 <div class="modal-content">
                    <div class="modal-header">
-                     <button type="button" class="close" (click)="close()" >&times;</button>
-                     <h4 class="modal-title">{{title || 'Alert!'}}</h4>
+                     <h4 class="modal-title">{{data.title || 'Alert!'}}</h4>
                    </div>
                    <div class="modal-body">
-                     <p>{{message || 'TADAA-AM!'}}</p>
-                   </div>
-                   <div class="modal-footer">
-                     <button type="button" class="btn btn-primary" (click)="close()">OK</button>
+                     <p>{{data.message || 'TADAA-AM!'}}</p>
                    </div>
                 </div>
              </div>`
 })
-export class AlertComponent extends DialogComponent<AlertModel, null> implements AlertModel {
+export class AlertComponent implements AlertModel {
     title: string;
     message: string;
-    constructor(dialogService: DialogService) {
-        super(dialogService);
+    constructor(@Inject(MAT_DIALOG_DATA) public data: AlertModel) {
+        this.title = data.title;
+        this.message = data.message;
     }
 }

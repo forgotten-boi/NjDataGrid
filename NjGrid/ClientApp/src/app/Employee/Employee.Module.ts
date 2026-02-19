@@ -1,4 +1,3 @@
-import '../../rxjs-operators';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -35,9 +34,6 @@ import { EmployeeAddDetailsComponent } from '../Employee/EmployeeDetails-add-det
         CommonGridModule,
         //MdSlideToggleModule
         
-    ],
-    entryComponents: [
-        EmployeeProfileDetailsDialog,
     ],
     declarations: [EmployeeAddComponent, EmployeeProfileDetailsDialog, EmployeeListComponent, EmployeeDetailsComponent, EmployeeAddDetailsComponent],
     exports: [],

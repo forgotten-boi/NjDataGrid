@@ -7,7 +7,7 @@ import { NgForm, EmailValidator } from '@angular/forms';
 
 
 //import '../../rxjs-operators';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AlertNotificationService } from '../utils/AlertNotificationService';
 import { finalize } from 'rxjs/operators';
 

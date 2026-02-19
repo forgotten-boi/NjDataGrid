@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { map, finalize } from 'rxjs/operators';
 
 
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Gender } from '../utils/Enum/Gender';
 import { EmployeeStatus } from '../utils/Enum/EmployeeStatus';
 import { AlertNotificationService } from '../utils/AlertNotificationService';
