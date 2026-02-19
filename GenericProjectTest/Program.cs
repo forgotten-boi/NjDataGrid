@@ -24,8 +24,7 @@ namespace GenericProjectTest
                 .BuildServiceProvider();
 
             serviceProvider
-                .GetService<ILoggerFactory>()
-                .AddConsole(LogLevel.Debug);
+                .GetService<ILoggerFactory>();
 
             var logger = serviceProvider.GetService<ILoggerFactory>()
            .CreateLogger<Program>();

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -146,14 +146,14 @@ namespace NjGrid.Repository.Repositories
         // public List<T> 
         public async Task<IEnumerable<T>> ExecWithStoreProcedureAsync(string ProcedureName)
         {
-            var result = await _dbset.FromSql<T>(ProcedureName).ToListAsync();
+            var result = await _dbset.FromSqlRaw<T>(ProcedureName).ToListAsync();
             return result;
 
         }
 
         public async Task<IEnumerable<T>> ExecWithStoreProcedureAsync(string ProcedureName, params object[] parameters)
         {
-            return await _dbset.FromSql<T>(ProcedureName, parameters).ToListAsync();
+            return await _dbset.FromSqlRaw<T>(ProcedureName, parameters).ToListAsync();
         }
 
         public async Task<int> ExecWithStoreProcedureAsync(string query, SqlParameter[] parameter)

@@ -1,6 +1,4 @@
-﻿using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
+﻿using Microsoft.EntityFrameworkCore;
 using NjGrid.Entity.Entities;
 using System;
 using System.Collections.Generic;
