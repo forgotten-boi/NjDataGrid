@@ -16,7 +16,7 @@ namespace GenericProjectTest
           static void Main(string[] args)
         {
             var serviceProvider = new ServiceCollection()
-                .AddLogging()
+                .AddLogging(builder => builder.AddConsole().SetMinimumLevel(LogLevel.Debug))
                 .AddScoped(typeof(ITestRepository), typeof(TestRepository))
                 .AddScoped(typeof(ITestService), typeof(TestService))
                  

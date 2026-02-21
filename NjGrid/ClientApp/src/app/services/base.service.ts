@@ -9,9 +9,13 @@ export abstract class BaseService {
             if (error.status === 500) {
                 return throwError(() => error);
             }
-            return throwError(() => new Error(error.statusText));
+            const applicationError = error.headers?.get('Application-Error');
+            if (applicationError) {
+                return throwError(() => new Error(applicationError));
+            }
+            return throwError(() => new Error(error.statusText || 'Server error'));
         }
-        return throwError(() => new Error('Server error'));
+        return throwError(() => error);
     }
 }
 

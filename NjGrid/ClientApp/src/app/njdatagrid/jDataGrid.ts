@@ -75,11 +75,11 @@ export class jDataGridComponent implements OnInit {//implements OnChanges {
         this.populateData();
     }
 
-    populateData() {
+    populateData(): void {
         this.populate.emit();
     }
 
-    CheckIfDisplay(id: number)
+    CheckIfDisplay(id: number): void
     {
         this.displayButton.emit(id);
         var abc = this.display;
@@ -91,7 +91,7 @@ export class jDataGridComponent implements OnInit {//implements OnChanges {
     //    this.DeleteData.emit(id);
     //}
 
-    View(actionInput: any) {
+    View(actionInput: any): void {
         this.viewData.emit(actionInput);
     }
 }
