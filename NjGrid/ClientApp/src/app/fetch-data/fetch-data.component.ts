@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { IEmployeeInterface } from '../Employee/Employee.Interface';
 
 @Component({
+  standalone: false,
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
 })

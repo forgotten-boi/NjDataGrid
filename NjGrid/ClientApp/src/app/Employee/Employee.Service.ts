@@ -1,142 +1,80 @@
-import { PaginationComponent } from '../njdatagrid/pagination.component';
-
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IEmployeeInterface, Role } from './Employee.Interface';
 import { ConfigService } from '../utils/config.service';
-//import { BaseService } from '../services/base.service';
-
-//import { PaginatedResult, Pagination } from '../../shared/Interfaces';
-//import { ItemsService } from '../utils/ItemsService';
-
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { BaseService } from '../services/base.service';
-import { debug } from 'util';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class EmployeeService extends BaseService {
+export class EmployeeService {
     baseUrl: string = '';
-    constructor(private http: Http,
-        private configService: ConfigService,
-        //private itemsService: ItemsService,
-    ) {
-        super();
+
+    constructor(private http: HttpClient, private configService: ConfigService) {
         this.baseUrl = configService.getApiURI();
     }
+
+    private getHeaders(): HttpHeaders {
+        return new HttpHeaders({ 'Content-Type': 'application/json' });
+    }
+
     saveEmployee(employee: IEmployeeInterface): Observable<any> {
-        let headers = new Headers();
-        var data = JSON.stringify(employee);
-        headers.append('Content-Type', 'application/json');
-      let options = new RequestOptions({ headers: headers });
-      
-      return this.http
-        .post(
-          this.baseUrl + 'Employee/CreateEmployee', data, options
-        )
-        .pipe(map(res => res.json()))
-        .pipe(map(res => {
-          var ress = res;
-          return res;
-        }));
-            //.catch(this.handleError));
+        return this.http.post(
+            this.baseUrl + 'Employee/CreateEmployee',
+            employee,
+            { headers: this.getHeaders() }
+        );
     }
+
     resetUserPassword(id: number): Observable<any> {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        let options = new RequestOptions({ headers: headers });
-        return this.http
-          .post(
-            this.baseUrl + 'api/Auth/ResetUserPasswordByAdmin?id=' + id, options
-          ).
-          pipe(map(res => {
-            return res;
-          }));
-            //.catch(this.handleError);
+        return this.http.post(
+            this.baseUrl + 'api/Auth/ResetUserPasswordByAdmin?id=' + id,
+            null,
+            { headers: this.getHeaders() }
+        );
     }
 
-  //getEmployee(): Observable<IEmployeeInterface[]> {
-  //  
-  //      return this.http.get(this.baseUrl + 'Employee/GetAllEmployee').pipe(map((response: Response) => {
-  //          var result = <IEmployeeInterface[]>response.json();
-  //          return result;
-  //      }))
-  //          //.catch(this.handleError);
-  //  }
-
-    //getEmployeeForSalaryMapping(): Observable<IEmployeeInterface[]> {
-    //  return this.http.get(this.baseUrl + 'Employee/GetEmployeeForSalaryMapping').pipe(map((response: Response) => {
-    //    var result = <IEmployeeInterface[]>response.json();
-    //    return result;
-    //  }));
-    //        //.catch(this.handleError);
-    //}
-
-  getPagedEmployees(filter): Observable<IEmployeeInterface[]> {
-    
-        let headers = new Headers();
-        var data = JSON.stringify(filter);
-        headers.append('Content-Type', 'application/json');
-        let options = new RequestOptions({ headers: headers });
-      return this.http.post(this.baseUrl + 'Employee/GetPagedEmployee', data, options)
-        .pipe(map((response: Response) => {
-          var result = <IEmployeeInterface[]>response.json();
-          for (let emp of result) {
-            emp.fullName = emp.firstName + " " + emp.lastName;
-          }
-          return result;
-        }));
-            //.catch(this.handleError);
+    getPagedEmployees(filter: any): Observable<any> {
+        return this.http.post(
+            this.baseUrl + 'Employee/GetPagedEmployee',
+            filter,
+            { headers: this.getHeaders() }
+        );
     }
 
-    toQueryString(obj) {
-        var parts = [];
-        for (var property in obj) {
-            var value = obj[property];
-            if (value != null && value != undefined) {
-                parts.push(encodeURIComponent(property) + "=" + encodeURIComponent(value));
+    toQueryString(obj: any): string {
+        const parts: string[] = [];
+        for (const property in obj) {
+            const value = obj[property];
+            if (value !== null && value !== undefined) {
+                parts.push(encodeURIComponent(property) + '=' + encodeURIComponent(value));
             }
         }
         return parts.join('&');
     }
 
     getEmployeeByID(id: number): Observable<IEmployeeInterface> {
-      return this.http.get(this.baseUrl + 'Employee/GetEmployeeByID/' + id)
-        .pipe(map((res: Response) => {
-          return res.json();
-        }));
-            //.catch(this.handleError);
+        return this.http.get<IEmployeeInterface>(this.baseUrl + 'Employee/GetEmployeeByID/' + id);
     }
 
-    deleteEmployee(id: number) {
-        let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
-      return this.http.post(this.baseUrl + 'Employee/DeleteEmployee/?id=' + id, headers)
-        .pipe(map((res: Response) => {
-          return res.json();
-        }));
-            //.catch(this.handleError);
+    deleteEmployee(id: number): Observable<any> {
+        return this.http.post(
+            this.baseUrl + 'Employee/DeleteEmployee/?id=' + id,
+            null,
+            { headers: this.getHeaders() }
+        );
     }
+
     GetSalaryMappedEmployeeList(flag: string, salaryMonth: number, fiscalId: number): Observable<IEmployeeInterface[]> {
-        return this.http.get(this.baseUrl + 'Employee/GetSalaryMappedEmployeeList?flag=' + flag + "&salaryMonth=" + salaryMonth + "&fiscalId=" + fiscalId).pipe(map((response: Response) => {
-            var result = <IEmployeeInterface[]>response.json();
-            return result;
-      }));
-            //.catch(this.handleError);
+        return this.http.get<IEmployeeInterface[]>(
+            this.baseUrl + 'Employee/GetSalaryMappedEmployeeList?flag=' + flag + '&salaryMonth=' + salaryMonth + '&fiscalId=' + fiscalId
+        );
     }
 
     getEmployeeDetailsByID(id?: number): Observable<IEmployeeInterface> {
-      return this.http.get(this.baseUrl + 'Employee/GetEmployeeDetailByID/' + id)
-        .pipe(map((res: Response) => {
-          return res.json();
-        }));
-            //.catch(this.handleError);
+        return this.http.get<IEmployeeInterface>(this.baseUrl + 'Employee/GetEmployeeDetailByID/' + id);
     }
+
     getRoles(): Observable<Role[]> {
-      return this.http.get(this.baseUrl + 'api/Roles/getallroles')
-        .pipe(map((res: Response) => {
-          return <Role[]>res.json();
-        }));
-            //.catch(this.handleError);
+        return this.http.get<Role[]>(this.baseUrl + 'api/Roles/getallroles');
     }
 }

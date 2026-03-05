@@ -1,4 +1,4 @@
-﻿import {
+import {
     Component,
     Input,
     Output,
@@ -7,6 +7,7 @@
 } from '@angular/core';
 
 @Component({
+    standalone: false,
     selector: 'tblHeader',
     template: `<thead>
                                 <tr>

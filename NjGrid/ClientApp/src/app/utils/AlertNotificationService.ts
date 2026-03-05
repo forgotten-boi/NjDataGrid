@@ -1,4 +1,4 @@
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 //import { AlertDialogComponent } from '../../../app/AlertDialogComponent';
 import { Injectable } from '@angular/core';
 import { AlertDialogComponent } from '../AlertDialogComponent';

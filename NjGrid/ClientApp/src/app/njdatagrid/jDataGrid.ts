@@ -14,13 +14,14 @@ import { jDataTableComponent } from '../../app/njdatagrid/JDataTable';
 
 
 @Component({
+    standalone: false,
     selector: 'jDataGrid',
     template: `
         <div class="row clearfix font-12">
             <gridfilter (populate)="populateData()" [columnsList]="columns" [query]="query"></gridfilter>
         </div>
         <div class="table-responsive font-12">
-            <jDataTable [columnsList]="columns" [IconButton]="IconButton" [DisplayActionColumn]="DisplayActionColumn" (displayButton)="CheckIfDisplay($event)" [CustomColumnsList]="CustomColumn" [CheckIfValid]="display" (populate)="populateData()" [EventButton]="EventButton" (viewData)="View($event)" (deleteData)="deleteData($event)" [editLink]="editLink" [tableData]="DataList" [query]="query"></jDataTable>
+            <jDataTable [columnsList]="columns" [IconButton]="IconButton" [DisplayActionColumn]="DisplayActionColumn" (displayButton)="CheckIfDisplay($event)" [CustomColumnsList]="CustomColumn" [CheckIfValid]="display" (populate)="populateData()" [EventButton]="EventButton" (viewData)="View($event)" [editLink]="editLink" [tableData]="DataList" [query]="query"></jDataTable>
         </div>
         <pagination (populate)="populateData()" [total-items]="query.totalItems" [page-size]="query.pageSize" (page-changed)="onPageChange($event)"></pagination>
 `,
@@ -74,11 +75,11 @@ export class jDataGridComponent implements OnInit {//implements OnChanges {
         this.populateData();
     }
 
-    private populateData() {
+    populateData(): void {
         this.populate.emit();
     }
 
-    private CheckIfDisplay(id: number)
+    CheckIfDisplay(id: number): void
     {
         this.displayButton.emit(id);
         var abc = this.display;
@@ -90,7 +91,7 @@ export class jDataGridComponent implements OnInit {//implements OnChanges {
     //    this.DeleteData.emit(id);
     //}
 
-    private View(actionInput: any) {
+    View(actionInput: any): void {
         this.viewData.emit(actionInput);
     }
 }

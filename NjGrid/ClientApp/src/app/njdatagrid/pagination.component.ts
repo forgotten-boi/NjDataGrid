@@ -6,6 +6,7 @@ import {
 import { OnChanges } from '@angular/core';
 
 @Component({
+	standalone: false,
 	selector: 'pagination',
     template: `
         <nav *ngIf="totalItems > pageSize" style="height:35px !important;">

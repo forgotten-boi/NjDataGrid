@@ -3,21 +3,16 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IEmployeeInterface } from './Employee.Interface';
 import { EmployeeService } from './Employee.Service';
-//import { NotificationService } from '../../shared/utils/notification.service';
-//import { ISearchField } from '../../shared/SearchField';
-import { DialogService } from "ng6-bootstrap-modal";
 import { EmployeeDetailsComponent } from './Employee-Details.Component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { EmployeeProfileDetailsDialog } from './EmployeeProfileDetails';
 import { AlertNotificationService } from '../utils/AlertNotificationService';
 import { finalize } from 'rxjs/operators';
-import { debug } from 'util';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
+  standalone: false,
   selector: 'app-employee-list',
-  templateUrl: './Employee-list.component.html'
+  templateUrl: './Employee-list.Component.html'
 })
 export class EmployeeListComponent implements OnInit {
   public readonly PAGE_SIZE = 10;
@@ -57,13 +52,13 @@ export class EmployeeListComponent implements OnInit {
     ResetButton: true,
     CheckBoxColumn: false
   }
+  CustomColumn: any[] = [];
   displayVar: any = {};
 
   //CustomColumn = [{ htm: '<a (click)="Delete(data.id)"><i class="material-icons">delete</i></a>' }, {}];
 
   //CustomColumn =  [{Name: 'SendMail', Type: 'CheckBox'}] ;//[{}]
   constructor(private employeeService: EmployeeService, public dialog: MatDialog,
-    private dialogService: DialogService,
     private router: Router,
     private notificationService: AlertNotificationService) {
     this.Employee = [];
@@ -118,7 +113,11 @@ export class EmployeeListComponent implements OnInit {
       this.displayVar.Display = false;
 
   }
-  SendAll($event) {
+  onPageChange(page: any) {
+    this.query.page = page;
+    this.populateEmployee();
+  }
+  SendAll($event: any) {
     var abc = this.columns;
     var def = this.Employee;
     var j = 0;
